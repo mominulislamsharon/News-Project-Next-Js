@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -10,8 +11,10 @@ import {
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
 import { AiOutlineMenu } from "react-icons/ai";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   return (
     <header className="py-4 shadow-md">
       <nav className="max-w-7xl flex justify-between items-center mx-auto px-4  sm:px-6 lg:px-8">
@@ -25,16 +28,23 @@ const Navbar = () => {
           <NavigationMenuList className="flex items-center space-x-8">
             {/* News */}
             <NavigationMenuItem>
-              <NavigationMenuLink href="/news" className="hover:text-red-500">
+              <NavigationMenuLink
+                href="/news"
+                className={`${
+                  pathname === "/news" ? "text-red-500 font-semibold" : ""
+                }`}
+              >
                 News
               </NavigationMenuLink>
             </NavigationMenuItem>
 
             {/* Services dropdown */}
             <NavigationMenuItem className="hover:text-red-500 text-lg ">
-              <NavigationMenuTrigger className="text-gray-700">
-                Services
+              <NavigationMenuTrigger  className="text-gray-700">
+                <Link href="/services" className={`${pathname === '/services'? 'text-red-500 font-semibold': ''}`}>Services</Link>
+                
               </NavigationMenuTrigger>
+
               <NavigationMenuContent>
                 <ul className="text-gray-600 shadow-md rounded-md px-5 py-4 space-y-2">
                   <li>
@@ -58,7 +68,12 @@ const Navbar = () => {
 
             {/* About */}
             <NavigationMenuItem>
-              <NavigationMenuLink href="/about" className="hover:text-red-500">
+              <NavigationMenuLink
+                href="/about"
+                className={`${
+                  pathname === "/about" ? "text-red-500 font-semibold" : ""
+                }`}
+              >
                 About
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -67,7 +82,9 @@ const Navbar = () => {
             <NavigationMenuItem>
               <NavigationMenuLink
                 href="/contact"
-                className="hover:text-red-500"
+                className={`${
+                  pathname === "/contact" ? "text-red-500 font-semibold" : ""
+                }`}
               >
                 Contact
               </NavigationMenuLink>
@@ -79,7 +96,7 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-4">
           <div className="flex items-center ">
             <span className="mr-2">Dark Mode</span>
-            <Switch/>
+            <Switch />
           </div>
           <Button variant="default">Login</Button>
         </div>
