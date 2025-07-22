@@ -10,11 +10,12 @@ import {
 } from "../ui/navigation-menu";
 import { Switch } from "../ui/switch";
 import { Button } from "../ui/button";
-import { AiOutlineMenu } from "react-icons/ai";
 import { usePathname } from "next/navigation";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = () => {
   const pathname = usePathname();
+
   return (
     <header className="py-4 shadow-md">
       <nav className="max-w-7xl flex justify-between items-center mx-auto px-4  sm:px-6 lg:px-8">
@@ -40,9 +41,15 @@ const Navbar = () => {
 
             {/* Services dropdown */}
             <NavigationMenuItem className="hover:text-red-500 text-lg ">
-              <NavigationMenuTrigger  className="text-gray-700">
-                <Link href="/services" className={`${pathname === '/services'? 'text-red-500 font-semibold': ''}`}>Services</Link>
-                
+              <NavigationMenuTrigger className="text-gray-700">
+                <Link
+                  href="/services"
+                  className={`${
+                    pathname === "/services" ? "text-red-500 font-semibold" : ""
+                  }`}
+                >
+                  Services
+                </Link>
               </NavigationMenuTrigger>
 
               <NavigationMenuContent>
@@ -101,11 +108,7 @@ const Navbar = () => {
           <Button variant="default">Login</Button>
         </div>
         {/* mobile hamber menu */}
-        <div className="lg:hidden">
-          <Button variant="outline">
-            <AiOutlineMenu size={24} />
-          </Button>
-        </div>
+        <MobileMenu />
       </nav>
     </header>
   );
