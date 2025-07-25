@@ -8,7 +8,6 @@ export const fetchNews = async (category: string = "", search: string = "") => {
     }
     const data = await response.json();
 
-    // Client-side filtering
     const filtered = data.filter((item: any) => {
       const matchesSearch =
         item.title.toLowerCase().includes(search.toLowerCase()) ||

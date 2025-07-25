@@ -4,7 +4,9 @@ import NewsLetter from "@/components/shared/NewsLetter";
 import { NewsItem } from "@/types/news";
 
 const Home = async () => {
-  const data = await fetch("http://localhost:3000/news-data.json");
+  const data = await fetch("http://localhost:3000/news-data.json", {
+    cache: "force-cache",
+  });
   const news = await data.json();
   return (
     <div className="py-12">
